@@ -23,3 +23,10 @@
 * Next driver (current navigator) gets to decide wether to revert or commit before the push
 * Push all that has been committed.
 * Next Driver pulls and continues. Of course screen sharing needs to be switched accordingly.
+
+## Extra hints for style
+* Commit messages should be in present tense/imperative
+* i.e.: "Add test for functionality A"
+* i.e.: "Implement functionality A, test is green".
+* i.e.: "Lay foundation for test of functionality B"
+* Use Gitmoji to ensure that commits are focused. https://gitmoji.carloscuesta.me/
