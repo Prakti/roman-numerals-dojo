@@ -1,5 +1,6 @@
 import unittest
 import roman
+import math
 
 class TestRomanNumerals(unittest.TestCase):
 
@@ -38,6 +39,10 @@ class TestRomanNumerals(unittest.TestCase):
 
     def test_arabic_zero_to_roman_empty(self):
         self.assertEqual(roman.to_roman(0), "")
+
+    def test_pi_to_roman_empty(self):
+        self.assertEqual(roman.to_roman(math.pi), "III")
+
 
 class TestGetNextPart(unittest.TestCase):
     def test_get_next_part_2000_M(self):
