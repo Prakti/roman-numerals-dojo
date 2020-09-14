@@ -22,6 +22,8 @@ class TestRomanNumerals(unittest.TestCase):
 class TestGetNextPart(unittest.TestCase):
     def test_get_next_part_2000_M(self):
         self.assertEqual(roman.get_next_part(2000), "M")
+    def test_get_next_part_1_I(self):
+        self.assertEqual(roman.get_next_part(1), "I")
 
 if __name__ == '__main__':
     unittest.main()

@@ -17,8 +17,7 @@ def get_next_part(arabic):
                 roman += next_subtractable   
             sum += arabic_part    
             roman += roman_part
-
-    return roman, sum
+            return roman, sum
 
 
 def to_roman(arabic):
