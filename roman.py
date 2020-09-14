@@ -22,7 +22,7 @@ def get_next_part(arabic):
 
 def to_roman(arabic):
     roman = ""
-    while arabic > 0:
+    while arabic >= 1:
         roman_part, arabic_part = get_next_part(arabic)
         arabic -= arabic_part
         roman += roman_part
