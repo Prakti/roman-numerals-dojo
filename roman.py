@@ -6,7 +6,10 @@ def to_roman(arabic):
     roman = ""
 
     while arabic > 0:
-        if arabic >= 5:
+        if arabic == 9:
+            roman += "IX"
+            arabic -= 9
+        elif arabic >= 5:
             roman += "V"
             arabic -= 5
         elif arabic == 4:
