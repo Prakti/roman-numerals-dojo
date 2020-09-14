@@ -18,5 +18,10 @@ class TestRomanNumerals(unittest.TestCase):
     def test_arabic_9_to_roman_IX(self):
         self.assertEqual(roman.to_roman(9), "IX")
 
+
+class TestGetNextPart(unittest.TestCase):
+    def test_get_next_part_2000_M(self):
+        self.assertEqual(roman.get_next_part(2000), "M")
+
 if __name__ == '__main__':
     unittest.main()
