@@ -13,7 +13,7 @@ def get_next_part(arabic):
         next_subtractable_arabic = roman_numbers[next_subtractable]
         if arabic >= arabic_part - next_subtractable_arabic:
             if arabic < arabic_part:
-                sum += next_subtractable_arabic
+                sum -= next_subtractable_arabic
                 roman += next_subtractable   
             sum += arabic_part    
             roman += roman_part
@@ -22,12 +22,10 @@ def get_next_part(arabic):
 
 def to_roman(arabic):
     roman = ""
-
     while arabic > 0:
         roman_part, arabic_part = get_next_part(arabic)
         arabic -= arabic_part
         roman += roman_part
-
     return roman
 
 
