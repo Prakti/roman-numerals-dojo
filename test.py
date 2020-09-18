@@ -44,14 +44,5 @@ class TestRomanNumerals(unittest.TestCase):
         self.assertEqual(roman.to_roman(math.pi), "III")
 
 
-class TestGetNextPart(unittest.TestCase):
-    def test_get_next_part_2000_M(self):
-        self.assertEqual(roman.get_next_part(2000), ("M", 1000))
-
-
-    def test_get_next_part_1_I(self):
-        self.assertEqual(roman.get_next_part(1), ("I",1))
-
-
 if __name__ == '__main__':
     unittest.main()

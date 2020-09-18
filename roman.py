@@ -1,33 +1,32 @@
 """Libray to convert between roman and arabic numbers"""
 
-roman_numbers = {"M":1000, "D":500, "C":100, "L":50, "X":10, "V":5, "I":1, "":0}
-next_subtractable_roman = {"M":"C","D":"C","C":"X","L":"X","X":"I","V":"I","I":""}
+roman_numerals = [
+    ("M", 1000), ("CM", 900),
+    ("D", 500), ("CD", 400),
+    ("C", 100), ("XC", 90),
+    ("L", 50), ("XL", 40),
+    ("X", 10), ("IX", 9),
+    ("V", 5), ("IV", 4),
+    ("I", 1)
+]
 
 
-def get_next_part(arabic):
-    roman = ""
-    sum = 0
-
-    for roman_part,arabic_part in roman_numbers.items():
-        next_subtractable = next_subtractable_roman[roman_part]            
-        next_subtractable_arabic = roman_numbers[next_subtractable]
-        if arabic >= arabic_part - next_subtractable_arabic:
-            if arabic < arabic_part:
-                sum -= next_subtractable_arabic
-                roman += next_subtractable   
-            sum += arabic_part    
-            roman += roman_part
-            return roman, sum
+def find_next_numeral(arabic):
+    "Finds the next numeral and the corresponding arabic value"
+    for numeral, value in roman_numerals:
+        if arabic >= value:
+            return numeral, value
+    return "", 0
 
 
 def to_roman(arabic):
+    "Converts from arabic numbers to roman numbers. Casts floats to int."
     roman = ""
-    while arabic >= 1:
-        roman_part, arabic_part = get_next_part(arabic)
-        arabic -= arabic_part
-        roman += roman_part
+    arabic = int(arabic)
+
+    while arabic > 0:
+        next_numeral, subtractor = find_next_numeral(arabic)
+        roman += next_numeral
+        arabic -= subtractor
+
     return roman
-
-
-if __name__ == "__main__":
-    print(to_roman(1))
