@@ -20,10 +20,14 @@ roman_numerals_dict = {
     "I": 1
 }
 
-legal_tuples = ["CM", "CD", "XC", "XL", "IX", "IV"]
+legal_tuples_smaller = []
+legal_tuples_equal = []
 for num_a, val_a in roman_numerals_dict.items():
-    legal_tuples += [num_a + num_b for num_b, val_b in
-                     roman_numerals_dict.items() if val_a >= val_b]
+    legal_tuples_smaller += [num_a + num_b for num_b, val_b in
+                            roman_numerals_dict.items() if val_a > val_b]
+    legal_tuples_equal += [num_a + num_b for num_b, val_b in
+                            roman_numerals_dict.items() if val_a == val_b]
+legal_tuples = ["CM", "CD", "XC", "XL", "IX", "IV"] + legal_tuples_smaller + legal_tuples_equal
 
 illegal_triples = ["IIX", "IXI", "IIV"]
 illegal_tuples = []
@@ -57,9 +61,10 @@ def to_arabic(roman, last="", firstbutlast=""):
         arabic_numeral = roman_numerals_dict[num]
     else:
         raise NotARomanNumber
-
-    if firstbutlast + last + num in illegal_triples or last + num in illegal_tuples:
+    if not last + num in legal_tuples:
         raise NotARomanNumber
+    #if roman_numerals_dict[firstbutlast] < arabic_numeral and roman_numerals_dict[last] < arabic_numeral:
+    #    raise NotARomanNumber
 
     subtractor = 0
     if last + num in ["CM","CD", "XC", "XL", "IX", "IV"]:
