@@ -20,6 +20,11 @@ roman_numerals_dict = {
     "I": 1
 }
 
+legal_tuples = ["CM", "CD", "XC", "XL", "IX", "IV"]
+for num_a, val_a in roman_numerals_dict.items():
+    legal_tuples += [num_a + num_b for num_b, val_b in
+                     roman_numerals_dict.items() if val_a >= val_b]
+
 illegal_triples = ["IIX", "IXI", "IIV"]
 illegal_tuples = []
 
