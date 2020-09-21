@@ -46,10 +46,15 @@ def to_arabic(roman, last=""):
     if len(roman)==0:
         return 0
     num = roman[0]
-    if last + num in ["CD", "XL", "IV"]:
-        subtractor = 2 * roman_numerals_dict[last]
-        arabic_value = roman_numerals_dict[num] - subtractor
+    if num in roman_numerals_dict:
+        arabic_numeral = roman_numerals_dict[num]
     else:
-        arabic_value = roman_numerals_dict[num]
-    return arabic_value + to_arabic(roman[1:], num)
+        raise NotARomanNumber
+    subtractor = 0
+    if last + num in ["CM","CD", "XC", "XL", "IX", "IV"]:
+        subtractor = 2 * roman_numerals_dict[last]
+    return arabic_numeral - subtractor + to_arabic(roman[1:], num)
 
+
+class NotARomanNumber(Exception):
+    pass
