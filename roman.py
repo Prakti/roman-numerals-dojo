@@ -10,6 +10,16 @@ roman_numerals = [
     ("I", 1)
 ]
 
+roman_numerals_dict = {
+    "M":1000,
+    "D": 500,
+    "C": 100,
+    "L":50,
+    "X":10,
+    "V":5,
+    "I":1
+}
+
 
 def find_next_numeral(arabic):
     "Finds the next numeral and the corresponding arabic value"
@@ -30,3 +40,10 @@ def to_roman(arabic):
         arabic -= subtractor
 
     return roman
+
+
+def to_arabic(roman):
+    if len(roman)==0:
+        return 0
+    num = roman[0]
+    return roman_numerals_dict[num] + to_arabic(roman[1:])

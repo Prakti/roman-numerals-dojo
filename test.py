@@ -44,5 +44,13 @@ class TestRomanNumerals(unittest.TestCase):
         self.assertEqual(roman.to_roman(math.pi), "III")
 
 
+class TestArabicNumerals(unittest.TestCase):
+    def test_I_to_1(self):
+        self.assertEqual(roman.to_arabic("I"), 1)
+
+    def test_IV_to_4(self):
+        self.assertEqual(roman.to_arabic("IV"), 4)
+
+
 if __name__ == '__main__':
     unittest.main()
