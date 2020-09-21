@@ -2,6 +2,8 @@ import unittest
 import roman
 import math
 
+from roman import NotARomanNumber
+
 class TestRomanNumerals(unittest.TestCase):
 
     def test_arabic_1_to_roman_I(self):
@@ -60,12 +62,17 @@ class TestArabicNumerals(unittest.TestCase):
     def test_MMMMMMMCMXLIX_to_7949(self):
         self.assertEqual(roman.to_arabic("MMMMMMMCMXLIX"), 7949)
 
-    def test_MMMIMMMMCMXLIX_to_Exception(self):
-        self.assertRaises(roman.NotARomanNumber, roman.to_arabic("MMMIMMMMCMXLIX"))
+    def test_Z_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("Z")
 
-    def test_MMMOMMMMCMXLIX_to_Exception(self):
-        self.assertRaises(roman.NotARomanNumber, roman.to_arabic("MMMOMMMMCMXLIX"))
+    def test_IZ_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("IZ")
 
+    def test_IIX_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("IIX")
 
 if __name__ == '__main__':
     unittest.main()
