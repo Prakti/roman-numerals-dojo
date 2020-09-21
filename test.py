@@ -74,5 +74,31 @@ class TestArabicNumerals(unittest.TestCase):
         with self.assertRaises(NotARomanNumber):
             roman.to_arabic("IIX")
 
+    def test_IXX_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("IXX")
+
+    def test_MCMM_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("MCMM")
+
+    def test_MDD_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("MDD")
+
+    def test_MLVX_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("MLVX")
+
+    def test_empty_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic("")
+
+    def test_1_is_NotARomanNumber(self):
+        with self.assertRaises(NotARomanNumber):
+            roman.to_arabic(1)
+
+
+
 if __name__ == '__main__':
     unittest.main()

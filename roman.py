@@ -21,16 +21,12 @@ roman_numerals_dict = {
 }
 
 legal_tuples_smaller = []
-legal_tuples_equal = []
 for num_a, val_a in roman_numerals_dict.items():
     legal_tuples_smaller += [num_a + num_b for num_b, val_b in
-                            roman_numerals_dict.items() if val_a > val_b]
-    legal_tuples_equal += [num_a + num_b for num_b, val_b in
-                            roman_numerals_dict.items() if val_a == val_b]
-legal_tuples = ["CM", "CD", "XC", "XL", "IX", "IV"] + legal_tuples_smaller + legal_tuples_equal
-
-illegal_triples = ["IIX", "IXI", "IIV"]
-illegal_tuples = []
+                            roman_numerals_dict.items() if val_a > val_b]   
+legal_tuples = ["CM", "CD", "XC", "XL", "IX", "IV", "MM", "CC", "XX", "II"] \
+    + legal_tuples_smaller \
+    + list(roman_numerals_dict.keys())
 
 def find_next_numeral(arabic):
     "Finds the next numeral and the corresponding arabic value"
@@ -54,8 +50,13 @@ def to_roman(arabic):
 
 
 def to_arabic(roman, last="", firstbutlast=""):
-    if len(roman)==0:
-        return 0
+    if type(roman) != str:
+        raise NotARomanNumber
+    if not roman:
+        if last:
+            return 0
+        else:
+            raise NotARomanNumber
     num = roman[0]
     if num in roman_numerals_dict:
         arabic_numeral = roman_numerals_dict[num]
@@ -63,8 +64,10 @@ def to_arabic(roman, last="", firstbutlast=""):
         raise NotARomanNumber
     if not last + num in legal_tuples:
         raise NotARomanNumber
-    #if roman_numerals_dict[firstbutlast] < arabic_numeral and roman_numerals_dict[last] < arabic_numeral:
-    #    raise NotARomanNumber
+    if len(firstbutlast)>0 \
+            and roman_numerals_dict[firstbutlast] < arabic_numeral \
+            and roman_numerals_dict[last] <= arabic_numeral:
+        raise NotARomanNumber
 
     subtractor = 0
     if last + num in ["CM","CD", "XC", "XL", "IX", "IV"]:
