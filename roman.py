@@ -20,6 +20,8 @@ roman_numerals_dict = {
     "I": 1
 }
 
+illegal_triples = ["IIX", "IXI", "IIV"]
+illegal_tuples = []
 
 def find_next_numeral(arabic):
     "Finds the next numeral and the corresponding arabic value"
@@ -42,7 +44,7 @@ def to_roman(arabic):
     return roman
 
 
-def to_arabic(roman, last=""):
+def to_arabic(roman, last="", firstbutlast=""):
     if len(roman)==0:
         return 0
     num = roman[0]
@@ -51,11 +53,14 @@ def to_arabic(roman, last=""):
     else:
         raise NotARomanNumber
 
+    if firstbutlast + last + num in illegal_triples or last + num in illegal_tuples:
+        raise NotARomanNumber
+
     subtractor = 0
     if last + num in ["CM","CD", "XC", "XL", "IX", "IV"]:
         subtractor = 2 * roman_numerals_dict[last]
 
-    return arabic_numeral - subtractor + to_arabic(roman[1:], num)
+    return arabic_numeral - subtractor + to_arabic(roman[1:], num, last)
 
 
 class NotARomanNumber(Exception):
