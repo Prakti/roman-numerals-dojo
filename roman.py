@@ -42,8 +42,14 @@ def to_roman(arabic):
     return roman
 
 
-def to_arabic(roman):
+def to_arabic(roman, last=""):
     if len(roman)==0:
         return 0
     num = roman[0]
-    return roman_numerals_dict[num] + to_arabic(roman[1:])
+    if last + num in ["CD", "XL", "IV"]:
+        subtractor = 2 * roman_numerals_dict[last]
+        arabic_value = roman_numerals_dict[num] - subtractor
+    else:
+        arabic_value = roman_numerals_dict[num]
+    return arabic_value + to_arabic(roman[1:], num)
+
