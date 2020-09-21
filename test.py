@@ -54,5 +54,9 @@ class TestArabicNumerals(unittest.TestCase):
     def test_XV_to_15(self):
         self.assertEqual(roman.to_arabic("XV"), 15)
 
+    def test_MCMLXXXXVII_to_1987(self):
+        self.assertEqual(roman.to_arabic("MCMLXXXVII"), 1987)
+
+
 if __name__ == '__main__':
     unittest.main()
